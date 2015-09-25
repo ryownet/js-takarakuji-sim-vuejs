@@ -187,7 +187,7 @@ var judge = function (kuji) {
 
 
 $(document).ready(function (){
-  $.getJSON('js/setting.json', function (data){
+  $.getJSON('public/setting/setting.json', function (data){
     kujiUtil.atariArr = data;
 
     var l = kujiUtil.atariArr.length;
