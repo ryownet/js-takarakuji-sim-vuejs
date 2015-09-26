@@ -1,12 +1,12 @@
 // judge 関数のチェック
 
 var assert = require('assert');
-var kujiUtil = require('../src/js/kujiUtil');
+var kujiUtil = require('../src/js/_kujiUtil');
 
-kujiUtil.atariArr = require('../public/setting/setting.json');
+kujiUtil.atariArr = require('../public/setting/data.json');
 
 var AtariKuji = require('./atariKuji');
-var judge = require('../src/js/judge');
+var judge = require('../src/js/_judge');
  
 describe('judge', function () {
   describe('くじ', function () {

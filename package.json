@@ -7,7 +7,8 @@
     "js": "gulp javascript",
     "dest": "gulp dest",
     "test": "mocha test/kujiTest.js",
-    "make": "gulp dest && npm run test"
+    "make": "gulp dest && npm run test",
+    "start": "http-server ./public -o"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "gulp-sass": "^2.0.4",
     "gulp-uglify": "^1.4.1",
     "gulp-webpack": "^1.5.0",
+    "http-server": "^0.8.5",
     "mocha": "^2.3.3",
     "webpack": "^1.12.2"
   }

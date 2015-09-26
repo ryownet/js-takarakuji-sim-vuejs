@@ -10,7 +10,7 @@ $            = (require 'gulp-load-plugins')()
 
 paths =
   srcDir : 'src'
-  dstDir : 'public'
+  dstDir : 'public/assets'
   tstDir : 'test'
 
 

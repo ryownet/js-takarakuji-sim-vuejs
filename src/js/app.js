@@ -3,9 +3,9 @@
   "use strict";
 
   var $ = w.jQuery;
-  var kujiUtil = require('./kujiUtil');
-  var dispResult = require('./dispResult');
-  var judge = require('./judge')
+  var kujiUtil = require('./_kujiUtil');
+  var dispResult = require('./_dispResult');
+  var judge = require('./_judge')
 
 
 
@@ -66,7 +66,7 @@ var actionVm = new Vue({
 
 
 $(document).ready(function (){
-  $.getJSON('public/setting/setting.json', function (data){
+  $.getJSON('setting/data.json', function (data){
     kujiUtil.atariArr = data;
 
     var l = kujiUtil.atariArr.length;
