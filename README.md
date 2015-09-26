@@ -10,6 +10,20 @@ https://github.com/ryownet/js-takarakuji-sim
 - judge関数でくじ番号の当たり外れを照会します。ここを変えた場合はテストを通し、全てパスすること！
 
 
+
+## とりあえず打つべきコマンド
+
+```
+css,js compile all
+$ npm run dest
+
+css, js, test all
+$ npm run make
+```
+
+
+## 必要に応じて打つコマンド
+
 ```
 css compile(scss -> css)
 $ npm run css
@@ -22,21 +36,14 @@ $ npm run js
 ```
 
 ```
-css,js compile all
-$ npm run dest
-```
-
-```
 js test
 $ npm run test
 ```
 
-```
-css, js, test all
-$ npm run make
-```
 
-
+## その他
+- watchタスクは設定していません
+- ビルドしたcss,jsはリポジトリに入れていません。コマンド打って生成してね
 
 
 
