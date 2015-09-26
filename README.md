@@ -36,18 +36,18 @@ $ npm run make
 ## 必要に応じて打つコマンド
 
 ```
-css compile(scss -> css)
+// css compile(scss -> css)
 $ npm run css
 ```
 
 
 ```
-js compile(webpack)
+// js compile(webpack)
 $ npm run js
 ```
 
 ```
-js test
+// js test
 $ npm run test
 ```
 
