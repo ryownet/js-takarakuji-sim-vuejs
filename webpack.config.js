@@ -1,5 +1,5 @@
 // @file config.js
-var dest = './public'; // 出力先ディレクトリ
+var dest = './public/assets'; // 出力先ディレクトリ
 var src = './src';  // ソースディレクトリ
 
 module.exports = {

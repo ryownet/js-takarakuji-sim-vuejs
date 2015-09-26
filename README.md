@@ -5,19 +5,30 @@ jQuery版を書き直すシリーズです
 https://github.com/ryownet/js-takarakuji-sim
 
 ### ルール
-- public/js/setting.json は変更しない
+- setting/data.json は変更しない
 - それ以外はOK
 - judge関数でくじ番号の当たり外れを照会します。ここを変えた場合はテストを通し、全てパスすること！
 
+### 確認
+- public/index.html を適当に開きます
+- webサーバがない場合はhttp-serverも使えます
 
+```
+// ローカルサーバを立ち上げ
+// http://localhost:8080/ で、public をカレントディレクトリに起動
+$ npm run start
+```
 
 ## とりあえず打つべきコマンド
 
 ```
-css,js compile all
+// もろもろインストール
+$ npm install
+
+// CSSとJSを生成
 $ npm run dest
 
-css, js, test all
+// CSSとJSを生成しテストを実行
 $ npm run make
 ```
 
