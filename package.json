@@ -5,14 +5,9 @@
   "scripts": {
     "css": "gulp css",
     "js": "gulp javascript",
-    "watch": "gulp watch",
-    "check": "gulp check",
-    "check:css": "gulp check:css",
-    "check:js": "gulp check:js",
-    "check:html": "gulp check:html",
     "dest": "gulp dest",
-    "start": "http-server -p 9999 -a 0.0.0.0 -o ",
-    "test": "gulp test:casperjs"
+    "test": "mocha test/kujiTest.js",
+    "make": "gulp dest && npm run test"
   },
   "repository": {
     "type": "git",
@@ -21,13 +16,15 @@
   "author": "ryownet",
   "license": "ISC",
   "devDependencies": {
-    "buster": "^0.7.18",
     "coffee-script": "~1.9.3",
     "gulp": "^3.9.0",
-    "gulp-busterjs": "^1.4.0",
     "gulp-header": "^1.7.1",
+    "gulp-if": "^1.2.5",
     "gulp-load-plugins": "~0.7.1",
     "gulp-sass": "^2.0.4",
-    "run-sequence": "~1.1.1"
+    "gulp-uglify": "^1.4.1",
+    "gulp-webpack": "^1.5.0",
+    "mocha": "^2.3.3",
+    "webpack": "^1.12.2"
   }
 }

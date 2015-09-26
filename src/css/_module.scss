@@ -79,6 +79,22 @@
 	}
 }
 
+.ttl-hd{
+	font-size: 14px;
+	text-align: center;
+	line-height: 1;
+	position: relative;
+	.icn-head{
+		width: 14px;
+		height: 14px;
+		background: red;
+		display: inline-block;
+		margin-right: 5px;
+		border-radius: 14px;
+	}
+}
+
+
 .actionBar{
 	background: #000;
 	background: rgba(0,0,0, .6);

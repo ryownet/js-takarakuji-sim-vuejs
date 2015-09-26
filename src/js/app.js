@@ -3,84 +3,10 @@
   "use strict";
 
   var $ = w.jQuery;
+  var kujiUtil = require('./kujiUtil');
+  var dispResult = require('./dispResult');
+  var judge = require('./judge')
 
-
-// Util
-var kujiUtil = {
-  interval: null,
-  TANKA : 300,
-  INTERVAL: 2,
-  zeroPad: function (num, keta){
-    var zero = '';
-    for(var i = 0; i<keta; i++){
-      zero += '0';
-    }
-    return ( zero + num).substr(-keta);
-  },
-  start: function () {
-    kujiUtil.interval = setInterval(kujiUtil.getKuji, kujiUtil.INTERVAL);
-  },
-  stop: function () {
-    clearInterval( kujiUtil.interval);
-  },
-  getKuji: function () {
-//    var k = new Kuji() ;
-  var k = vm.totalKujiCount === 2000 ? new atariKuji(): new Kuji()
-
-    dispResult( judge(k) );
-  },
-  atariArr : []
-};
-
-
-var dispResult = function ( atariKuji ){
-  if( atariKuji.name ){
-    // console.time('t')
-    vm.totalGetMoney += atariKuji.kingaku;
-    vm.dispItems.forEach(function(item){
-      if (item.category === atariKuji.category){
-        item.atariCount++;
-      }
-    });
-
-    //console.timeEnd('t')
-  }
-  vm.totalKujiCount++;
-  vm.totalSpendMoney += kujiUtil.TANKA;
-  vm.sagaku = vm.totalGetMoney - vm.totalSpendMoney;
-}
-
-
-
-/*
- くじクラス
- */
-var Kuji = function () {
-  var self = this;
-
-  // 組は2けたのゼロ埋め数字
-  self.kumi = kujiUtil.zeroPad( Math.floor( Math.random() * 100 ), 2);
-
-  // 番号は6けたのゼロ埋め数字
-  self.bangou = kujiUtil.zeroPad( Math.floor( Math.random() * 100000 ), 6 );
-
-  self.name = function () {
-    return self.kumi + '組' + self.bangou + '番';
-  }
-}
-
-/*
- あたり判定テストケース
- */
-var atariKuji = function () {
-  var self = this;
-  self.kumi = '87';
-  self.bangou = '178686';
-
-  self.name = function(){
-    return self.kumi + '組' + self.bangou + '番';
-  }
-}
 
 
 /*
@@ -118,67 +44,20 @@ var actionVm = new Vue({
     start: function (e) {
       this.isStop = false;
       this.isStart = true;
-      kujiUtil.start();
+      kujiUtil.intervalID = setInterval( this.getKuji, kujiUtil.INTERVAL );
     },
     stop: function (e) {
       this.isStop = true;
       this.isStart = false;
-      kujiUtil.stop();
+      clearInterval( kujiUtil.intervalID );
+    },
+    getKuji : function (){
+      var k = new kujiUtil.Kuji();
+      var j = judge(k, kujiUtil);
+      dispResult(j, vm, kujiUtil);
     }
   }
 });
-
-
-/*
-* 判定
-* @param Kuji
-* @return object
-* TODO: 高速化
-*/
-var judge = function (kuji) {
-  var isSameKumi = false;
-  var isSameBan = false;
-  var arr = kujiUtil.atariArr;
-  var l = arr.length;
-  for(var i=0;i<l; i++){
-    //各当選回ごとにジャッジをリセット
-    var isSameKumi_ = false;
-    var isSameBan_ = false;
-    if(arr[i].atari.kumi === kuji.kumi){
-      isSameKumi_ = true;
-    }else if(arr[i].atari.kumi === '##'){
-      isSameKumi_ = true;
-    }
-    if(!isSameKumi_) continue;
-    if(arr[i].atari.bangou === kuji.bangou){
-      isSameBan_ = true;
-    }else{
-      if(arr[i].atari.bangou.indexOf('#') !== -1){
-
-        // ＃の個数を数え、くじ番号で#の個数分を前方から削除して判定
-        var komeNum = arr[i].atari.bangou.split('#').length-1;
-
-        // くじ番号で#の個数分だけ消す
-        var kujiBanNumArr = kuji.bangou.split('');
-        for(var j=0; j<komeNum; j++){
-         kujiBanNumArr[j] = '';
-       }
-       var kujiBanNum = kujiBanNumArr.join('');
-       if(kujiBanNum ===  arr[i].atari.bangou.substr(komeNum)){
-          isSameBan_ = true;
-        }
-      }
-    }
-    if( isSameBan_ && isSameKumi_){
-      isSameKumi = isSameKumi_;
-      isSameBan = isSameBan_;
-      //あたり
-      return arr[i];
-    }
-  }
-
-  return {};
-}
 
 
 
