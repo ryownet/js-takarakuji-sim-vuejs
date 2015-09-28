@@ -6,6 +6,8 @@ var kujiUtil = require('../src/js/_kujiUtil');
 kujiUtil.atariArr = require('../public/setting/data.json');
 
 var AtariKuji = require('./atariKuji');
+var HazureKuji = require('./hazureKuji');
+
 var judge = require('../src/js/_judge');
  
 describe('judge', function () {
@@ -62,6 +64,11 @@ describe('judge', function () {
       var k = new AtariKuji(9);
       var j = judge(k, kujiUtil);
         assert.equal(j.name , '6等');
+    });
+    it('はずれくじがはずれること', function () {
+      var k = new HazureKuji();
+      var j = judge(k, kujiUtil);
+        assert.equal(j.hazure , true);
     });
   });
 });

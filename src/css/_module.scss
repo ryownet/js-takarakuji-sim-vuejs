@@ -112,9 +112,28 @@
 	color: #fff;
 	display: block;
 	width: 100%;
+	cursor: pointer;
 }
 .btn[disabled]{
 	display: none;
+}
+@media only screen and (min-width: 500px){
+	body{
+		width: 500px;
+		margin: 0 auto;
+		background: black;
+	}
+	.app{
+		background: #fff;
+	}
+	.actionBar{
+		padding: 30px 0;
+		width: 500px;
+	}
+	.btn{
+		padding: 16px 0;
+		font-size: 20px;
+	}
 }
 
 

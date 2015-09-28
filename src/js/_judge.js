@@ -47,7 +47,9 @@ var judge = function ( kuji, kujiUtil) {
     }
   }
 
-  return {};
+  return {
+    hazure: true
+  }
 }
 
 module.exports = judge;
