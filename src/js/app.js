@@ -7,6 +7,8 @@
   var dispResult = require('./_dispResult');
   var judge = require('./_judge')
 
+  //速度計測用. 10秒間のくじ判定数をアラート
+  var isDebug = false;
 
 
 /*
@@ -45,6 +47,13 @@ var actionVm = new Vue({
       this.isStop = false;
       this.isStart = true;
       kujiUtil.intervalID = setInterval( this.getKuji, kujiUtil.INTERVAL );
+      if(isDebug){
+        setTimeout(function (){
+          clearInterval( kujiUtil.intervalID );
+          this.isStop = true;
+          window.alert(vm.totalKujiCount);
+        }, 10000);
+      }
     },
     stop: function (e) {
       this.isStop = true;
